@@ -1,0 +1,77 @@
+<body>
+  <div class="fullscreen-container">
+    <div class="branding-section">
+      <div class="branding-overlay">
+        <div class="university-header">
+          <div class="logo-large">
+            <img src="https://uttehuacan.edu.mx/media/images/logo_blanco(1).png" alt="Logo UTT" style="width: 100px; height: 90px; object-fit: contain;">
+          </div>
+          <h1 class="university-title">Universidad Tecnológica de Tehuacán</h1>
+          <p class="university-subtitle">Se imparable, se un tigre</p>
+        </div>
+        <div class="welcome-message">
+          <h2>Crea tu Cuenta para Iniciar</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-section">
+      <div class="login-container">
+        <div class="login-header">
+          <h2>Registro de Nuevo Estudiante</h2>
+          <p>Completa tus datos para crear una cuenta</p>
+        </div>
+
+        <form class="login-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="nombre" class="form-label">
+              <i class="fa-solid fa-user"></i>
+              Nombre Completo
+            </label>
+            <input type="text" id="nombre" class="form-input" placeholder="Ingresa tu nombre y apellidos" formControlName="nombre">
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">
+              <i class="fa-solid fa-envelope"></i>
+              Correo Electrónico
+            </label>
+            <input type="email" id="email" class="form-input" placeholder="estudiante@utt.edu.mx" formControlName="email">
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">
+              <i class="fas fa-lock"></i>
+              Contraseña
+            </label>
+            <input type="password" id="password" class="form-input" placeholder="Crea una contraseña segura" formControlName="password">
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword" class="form-label">
+              <i class="fas fa-check-circle"></i>
+              Confirmar Contraseña
+            </label>
+            <input type="password" id="confirmPassword" class="form-input" placeholder="Vuelve a escribir la contraseña" formControlName="confirmPassword">
+          </div>
+
+          <button type="submit" class="login-button" [disabled]="registerForm.invalid">
+            <i class="fas fa-user-plus"></i>
+            Registrarme
+          </button>
+        </form>
+
+        <div class="divider">
+          <span>o</span>
+        </div>
+
+        <div class="additional-options">
+          <a routerLink="/login" class="option-link">
+            <i class="fas fa-sign-in-alt"></i>
+            Ya tengo una cuenta. Iniciar Sesión
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

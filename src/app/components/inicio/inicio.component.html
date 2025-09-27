@@ -1,0 +1,235 @@
+<body>
+  <header class="fixed-header">
+    <div class="header-container">
+      <div class="header-left">
+        <img src="https://uttehuacan.edu.mx/media/images/logo_blanco(1).png" alt="Logo UTT" class="header-logo">
+        <div class="welcome-text">
+          <h3>Bienvenido, <span class="user-name">{{ userName }}</span></h3>
+        </div>
+      </div>
+      <nav class="header-nav">
+        <a href="#" class="nav-link">EJEMPLO 1</a>
+        <a href="#" class="nav-link">EJEMPLO 2</a>
+        <button class="logout-btn" (click)="logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          Cerrar Sesión
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="content-container">
+
+      <!-- SECCIÓN 1: Se muestra SOLO si la inscripción NO está pagada -->
+      <div *ngIf="!inscripcionPagada" class="payment-section">
+        <div class="payment-header">
+          <div class="payment-icon">
+            <i class="fas fa-credit-card"></i>
+          </div>
+          <h2>Pago de Inscripción</h2>
+          <p>Complete el pago antes de llenar el formulario de inscripción</p>
+        </div>
+        <div class="payment-info">
+          <div class="payment-amount">
+            <h3>Costo de Inscripción</h3>
+            <div class="amount">
+              <span class="currency">$</span>
+              <span class="price">2,500</span>
+              <span class="period">MXN</span>
+            </div>
+          </div>
+          <div class="payment-methods">
+            <h4>Métodos de Pago Disponibles</h4>
+            <div class="methods-grid">
+              <div class="payment-method">
+                <i class="fas fa-credit-card"></i>
+                <span>Tarjeta de Crédito/Débito</span>
+              </div>
+              <div class="payment-method">
+                <i class="fas fa-university"></i>
+                <span>Transferencia Bancaria</span>
+              </div>
+              <div class="payment-method">
+                <i class="fas fa-store"></i>
+                <span>Pago en Ventanilla</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="payment-actions">
+          <button class="pay-btn">
+            <i class="fas fa-lock"></i>
+            Proceder al Pago Seguro
+          </button>
+          <p class="payment-note">
+            <i class="fas fa-shield-alt"></i>
+            Pago 100% seguro y protegido
+          </p>
+        </div>
+      </div>
+
+      <!-- SECCIÓN 2: Se muestra SOLO si la inscripción SÍ está pagada -->
+      <div *ngIf="inscripcionPagada">
+        <!-- Lógica anidada: si pagó, revisa si el formulario ya fue enviado -->
+        <div *ngIf="!inscripcionEnviada; else solicitudRecibidaTemplate" class="form-section">
+          <div class="form-header">
+            <h2>Formulario de Inscripción</h2>
+            <p>Complete todos los campos requeridos para su inscripción</p>
+          </div>
+          <form class="inscription-form" [formGroup]="inscriptionForm" (ngSubmit)="onSubmit()">
+            <!-- Datos Personales -->
+            <div class="form-section-group">
+              <h3 class="section-title"><i class="fas fa-user"></i> Datos Personales</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="nombres" class="form-label">Nombres *</label>
+                  <input type="text" id="nombres" class="form-input" placeholder="Ingresa tus nombres" formControlName="nombres">
+                </div>
+                <div class="form-group">
+                  <label for="apellidos" class="form-label">Apellidos *</label>
+                  <input type="text" id="apellidos" class="form-input" placeholder="Ingresa tus apellidos" formControlName="apellidos">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="curp" class="form-label">CURP *</label>
+                  <input type="text" id="curp" class="form-input" placeholder="CURP de 18 caracteres" maxlength="18" formControlName="curp">
+                </div>
+                <div class="form-group">
+                  <label for="fecha-nacimiento" class="form-label">Fecha de Nacimiento *</label>
+                  <input type="date" id="fecha-nacimiento" class="form-input" formControlName="fechaNacimiento">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="genero" class="form-label">Género *</label>
+                  <select id="genero" class="form-input" formControlName="genero">
+                    <option value="">Selecciona tu género</option>
+                    <option value="masculino">Masculino</option>
+                    <option value="femenino">Femenino</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="estado-civil" class="form-label">Estado Civil</label>
+                  <select id="estado-civil" class="form-input" formControlName="estadoCivil">
+                    <option value="">Selecciona tu estado civil</option>
+                    <option value="soltero">Soltero(a)</option>
+                    <option value="casado">Casado(a)</option>
+                    <option value="divorciado">Divorciado(a)</option>
+                    <option value="viudo">Viudo(a)</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <!-- Datos de Contacto -->
+            <div class="form-section-group">
+              <h3 class="section-title"><i class="fas fa-phone"></i> Datos de Contacto</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email" class="form-label">Correo Electrónico *</label>
+                  <input type="email" id="email" class="form-input" placeholder="correo@ejemplo.com" formControlName="email">
+                </div>
+                <div class="form-group">
+                  <label for="telefono" class="form-label">Teléfono *</label>
+                  <input type="tel" id="telefono" class="form-input" placeholder="10 dígitos" maxlength="10" formControlName="telefono">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="direccion" class="form-label">Dirección Completa *</label>
+                <textarea id="direccion" class="form-input textarea" rows="3" placeholder="Calle, número, colonia, ciudad, estado, código postal" formControlName="direccion"></textarea>
+              </div>
+            </div>
+            <!-- Datos Académicos -->
+            <div class="form-section-group">
+              <h3 class="section-title"><i class="fas fa-graduation-cap"></i> Datos Académicos</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="carrera" class="form-label">Carrera de Interés *</label>
+                  <select id="carrera" class="form-input" formControlName="carreraInteres">
+                    <option value="">Selecciona una carrera</option>
+                    <option value="sistemas">Ingeniería en Sistemas Computacionales</option>
+                    <option value="industrial">Ingeniería Industrial</option>
+                    <option value="mecatronica">Ingeniería Mecatrónica</option>
+                    <option value="administracion">Licenciatura en Administración</option>
+                    <option value="contaduria">Licenciatura en Contaduría</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="turno" class="form-label">Turno Preferido *</label>
+                  <select id="turno" class="form-input" formControlName="turnoPreferido">
+                    <option value="">Selecciona un turno</option>
+                    <option value="matutino">Matutino</option>
+                    <option value="vespertino">Vespertino</option>
+                    <option value="nocturno">Nocturno</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="escuela-procedencia" class="form-label">Escuela de Procedencia *</label>
+                  <input type="text" id="escuela-procedencia" class="form-input" placeholder="Nombre de tu escuela anterior" formControlName="escuelaProcedencia">
+                </div>
+                <div class="form-group">
+                  <label for="promedio" class="form-label">Promedio General *</label>
+                  <input type="number" id="promedio" class="form-input" placeholder="8.5" min="6" max="10" step="0.1" formControlName="promedioGeneral">
+                </div>
+              </div>
+            </div>
+            <!-- Datos del Tutor (opcional) -->
+            <div class="form-section-group">
+              <h3 class="section-title"><i class="fas fa-users"></i> Datos del Tutor/Responsable</h3>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="tutor-nombre" class="form-label">Nombre Completo del Tutor</label>
+                  <input type="text" id="tutor-nombre" class="form-input" placeholder="Nombre completo" formControlName="tutorNombre">
+                </div>
+                <div class="form-group">
+                  <label for="tutor-parentesco" class="form-label">Parentesco</label>
+                  <select id="tutor-parentesco" class="form-input" formControlName="tutorParentesco">
+                    <option value="">Selecciona parentesco</option>
+                    <option value="padre">Padre</option>
+                    <option value="madre">Madre</option>
+                    <option value="hermano">Hermano(a)</option>
+                    <option value="abuelo">Abuelo(a)</option>
+                    <option value="tio">Tío(a)</option>
+                    <option value="otro">Otro</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="tutor-telefono" class="form-label">Teléfono del Tutor</label>
+                  <input type="tel" id="tutor-telefono" class="form-input" placeholder="10 dígitos" maxlength="10" formControlName="tutorTelefono">
+                </div>
+                <div class="form-group">
+                  <label for="tutor-email" class="form-label">Correo del Tutor</label>
+                  <input type="email" id="tutor-email" class="form-input" placeholder="tutor@ejemplo.com" formControlName="tutorEmail">
+                </div>
+              </div>
+            </div>
+            <div class="submit-section">
+              <button type="submit" class="submit-btn" [disabled]="inscriptionForm.invalid">
+                <i class="fas fa-paper-plane"></i>
+                Enviar Solicitud de Inscripción
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Plantilla que se muestra si el formulario YA FUE ENVIADO -->
+        <ng-template #solicitudRecibidaTemplate>
+          <div class="submission-received-section">
+            <i class="fas fa-check-circle"></i>
+            <h2>Solicitud Recibida</h2>
+            <p>Hemos recibido tu formulario de inscripción. Pronto recibirás noticias de la universidad por correo electrónico.</p>
+            <p>¡Gracias por tu interés!</p>
+          </div>
+        </ng-template>
+      </div>
+
+    </div>
+  </main>
+</body>
+

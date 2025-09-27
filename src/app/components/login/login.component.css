@@ -1,0 +1,354 @@
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Fullscreen split-screen layout */
+    .fullscreen-container {
+      display: flex;
+      height: 100vh;
+      width: 100vw;
+    }
+
+    /* Left side branding with university colors and image */
+    .branding-section {
+      flex: 1;
+      background: linear-gradient(135deg, #0aae8c 0%, #1e566d 100%);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .branding-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('https://scontent.fpbc2-1.fna.fbcdn.net/v/t39.30808-6/483519656_965834352345837_1336890667900491808_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=JzgSFfY79UwQ7kNvwH3eQU7&_nc_oc=Adm5A4XGtyinAIBSDP9Eo6ZRJJTUTDL8uEWstyw-k9Mn2ftTEhMJKVKbozhSjlResXDo1-K3qYD0tvxxp1eDwhfw&_nc_zt=23&_nc_ht=scontent.fpbc2-1.fna&_nc_gid=WZfpiGbI2fekm6utdUGDqA&oh=00_AfapqTt_ByKN7X_qkZroebhrx0Z7hsdOwidA5a13PhAY9A&oe=68DA7344');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      z-index: 1;
+    }
+
+    .branding-overlay {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: white;
+      padding: 2rem;
+      max-width: 700px;
+    }
+
+    .logo-large {
+      width: 120px;
+      height: 120px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 2rem;
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .logo-large i {
+      font-size: 3rem;
+      color: white;
+    }
+
+    .university-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.2;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .university-subtitle {
+      font-size: 1.1rem;
+      opacity: 0.9;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .welcome-message {
+      margin-bottom: 3rem;
+    }
+
+    .welcome-message h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .welcome-message p {
+      font-size: 1rem;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Right side login form with clean white design */
+    .login-section {
+      flex: 1;
+      background: #1e566d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .login-header h2 {
+      font-size: 2rem;
+      color: white;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .login-header p {
+      color: #cbd5e1;
+      font-size: 1rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+
+    .form-label i {
+      color: #0aae8c;
+      width: 16px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 1rem;
+      border: 2px solid #e5e7eb;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #0aae8c;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(10, 174, 140, 0.1);
+    }
+
+    .password-container {
+      position: relative;
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #9ca3af;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .password-toggle:hover {
+      color: #0aae8c;
+      background: rgba(10, 174, 140, 0.1);
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      font-size: 0.9rem;
+    }
+
+    .forgot-link {
+      color: #0aae8c;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.2s ease;
+    }
+
+    .forgot-link:hover {
+      color: #1e566d;
+    }
+
+    .login-button {
+      width: 100%;
+      background: linear-gradient(135deg, #0aae8c, #1e566d);
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .login-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(10, 174, 140, 0.4);
+    }
+
+    .login-button:active {
+      transform: translateY(0);
+    }
+
+    .divider {
+      text-align: center;
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .divider::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #e5e7eb;
+    }
+
+    .divider span {
+      background: #1e566d;
+      padding: 0 1rem;
+      color: #cbd5e1;
+      font-weight: 500;
+    }
+
+    .additional-options {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .option-link {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border: 2px solid white;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .option-link:hover {
+      border-color: #0aae8c;
+      color: #0aae8c;
+      background: rgba(10, 174, 140, 0.1);
+    }
+
+    .option-link i {
+      color: #0aae8c;
+      width: 16px;
+    }
+
+    /* Responsive design for mobile */
+    @media (max-width: 768px) {
+      .fullscreen-container {
+        flex-direction: column;
+      }
+
+      .branding-section {
+        flex: 0 0 40vh;
+        min-height: 40vh;
+      }
+
+      .university-title {
+        font-size: 1.8rem;
+      }
+
+      .welcome-message h2 {
+        font-size: 1.4rem;
+      }
+
+      .features-list {
+        display: none;
+      }
+
+      .login-section {
+        flex: 1;
+        padding: 1rem;
+      }
+
+      .login-header h2 {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* Smooth animations */
+    @keyframes slideInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .branding-overlay {
+      animation: slideInLeft 0.8s ease-out;
+    }
+
+    .login-container {
+      animation: slideInRight 0.8s ease-out;
+    }

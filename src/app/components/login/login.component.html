@@ -1,0 +1,79 @@
+<body>
+  <div class="fullscreen-container">
+    <div class="branding-section">
+      <div class="branding-overlay">
+        <div class="university-header">
+            <div class="logo-large">
+            <img src="https://uttehuacan.edu.mx/media/images/logo_blanco(1).png" alt="Logo UTT" style="width: 100px; height: 90px; object-fit: contain;">
+            </div>
+          <h1 class="university-title">Universidad Tecnológica de Tehuacán</h1>
+          <p class="university-subtitle">Se imparable, se un tigre</p>
+        </div>
+        <div class="welcome-message">
+          <h2>Bienvenido al Sistema de Inscripciones</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-section">
+      <div class="login-container">
+        <div class="login-header">
+          <h2>Iniciar Sesión</h2>
+          <p>Ingresa tus credenciales</p>
+        </div>
+
+        <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="email" class="form-label">
+              <i class="fa-solid fa-user"></i>
+              Correo Electrónico
+            </label>
+            <input
+              type="email"
+              id="email"
+              class="form-input"
+              placeholder="estudiante@utt.edu.mx"
+              formControlName="email"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="password" class="form-label">
+              <i class="fas fa-lock"></i>
+              Contraseña
+            </label>
+            <div class="password-container">
+              <input
+                type="password"
+                id="password"
+                class="form-input"
+                placeholder="Ingresa tu contraseña"
+                formControlName="password"
+              >
+              </div>
+          </div>
+
+          <div class="form-options">
+            <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+          </div>
+
+          <button type="submit" class="login-button" [disabled]="loginForm.invalid">
+            <i class="fas fa-sign-in-alt"></i>
+            Iniciar Sesión
+          </button>
+        </form>
+
+        <div class="divider">
+          <span>o</span>
+        </div>
+
+        <div class="additional-options">
+          <a routerLink="/registro" class="option-link">
+            <i class="fas fa-user-plus"></i>
+            Registro de nuevo estudiante
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
