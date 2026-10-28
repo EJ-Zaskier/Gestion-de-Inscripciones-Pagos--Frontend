@@ -1,59 +1,36 @@
-# Uttinscripciones
+# Gestión de inscripciones y pagos (frontend)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
+Aplicación web en Angular para que los alumnos se registren, paguen su inscripción y envíen su solicitud. Se conecta a un backend de microservicios a través de un API Gateway.
 
-## Development server
+*Angular 19 · TypeScript · RxJS · Reactive Forms*
 
-To start a local development server, run:
+## Funciones
 
-```bash
-ng serve
+- **Registro e inicio de sesión** con formularios reactivos y validación (incluida la confirmación de contraseña).
+- **Interceptor HTTP** que agrega el token de autenticación a cada petición.
+- **Pago de inscripción** antes de habilitar el formulario.
+- **Formulario de inscripción** con envío de datos y archivos.
+- **Consulta del estado** de la solicitud.
+
+## Estructura
+
+```text
+src/app/components/   inicio, login, registro
+src/app/services/     auth.service (login/registro), inscripcion.service (solicitud y estado)
+src/app/interceptors/ auth.interceptor (token en cada petición)
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Ejecutar
 
 ```bash
-ng generate component component-name
+npm install
+npx ng serve
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Abre `http://localhost:4200`. La URL del API Gateway se define en `src/app/services/*.service.ts` (`apiUrl`).
+
+## Pruebas
 
 ```bash
-ng generate --help
+npx ng test
 ```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
